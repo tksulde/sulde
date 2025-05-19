@@ -49,27 +49,36 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Reglazed Studio',
-    title: 'CEO',
+    company: 'Mova',
+    title: 'Founder',
+    start: '2025',
+    end: 'Present',
+    link: 'https://mova.com',
+    id: 'work0',
+  },
+  {
+    company: 'GHorde',
+    title: 'Co Founder',
     start: '2024',
     end: 'Present',
-    link: 'https://ibelick.com',
+    link: 'https://ghorde.com',
     id: 'work1',
   },
   {
-    company: 'Freelance',
-    title: 'Design Engineer',
-    start: '2022',
-    end: '2024',
-    link: 'https://ibelick.com',
+    company: 'Helix labs',
+    title: 'Senior Software Engineer',
+    start: '2024',
+    end: '2025',
+    link: 'https://helixlabs.org',
     id: 'work2',
   },
+
   {
-    company: 'Freelance',
+    company: 'Infinite Solutions',
     title: 'Front-end Developer',
-    start: '2017',
-    end: 'Present',
-    link: 'https://ibelick.com',
+    start: '2023',
+    end: '2024',
+    link: 'https://infinite.mn/',
     id: 'work3',
   },
 ]
@@ -100,11 +109,11 @@ export const BLOG_POSTS: BlogPost[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
-    link: 'https://github.com/ibelick',
+    link: 'https://github.com/tksulde',
   },
   {
     label: 'Twitter',
-    link: 'https://twitter.com/ibelick',
+    link: 'https://twitter.com/tksulde',
   },
   {
     label: 'LinkedIn',
@@ -112,8 +121,8 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'Instagram',
-    link: 'https://www.instagram.com/ibelick',
+    link: 'https://www.instagram.com/aug1sth',
   },
 ]
 
-export const EMAIL = 'your@email.com'
+export const EMAIL = 'sulde.dev@gmail.com'
