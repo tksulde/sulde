@@ -29,27 +29,27 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Motion Primitives Pro',
-    description:
-      'Advanced components and templates to craft beautiful websites.',
-    link: 'https://pro.motion-primitives.com/',
+    name: 'Helix Labs',
+    description: 'Powering DeFi with Multi-Chain Restaking.',
+    link: 'https://helixlabs.org/',
     video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
+      'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1YgsvrTSICUpJd1uYby7OFaM3nfETVQ5HINz9A',
     id: 'project1',
   },
   {
-    name: 'Motion Primitives',
-    description: 'UI kit to make beautiful, animated interfaces.',
-    link: 'https://motion-primitives.com/',
+    name: 'EigenFi - Movement Vault',
+    description:
+      'Movement Vault is a next-generation liquid staking solution designed for the Movement Network.',
+    link: 'https://movement.eigenfi.io/',
     video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+      'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1Yqe0EfVnni9XMJVdmvPUc6tHNZAeRsYOrGoCK',
     id: 'project2',
   },
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Mova',
+    company: 'Sulthera Startup',
     title: 'Founder',
     start: '2025',
     end: 'Present',
@@ -68,7 +68,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     company: 'Helix labs',
     title: 'Senior Software Engineer',
     start: '2024',
-    end: '2025',
+    end: 'Present',
     link: 'https://helixlabs.org',
     id: 'work2',
   },
@@ -85,23 +85,23 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'Exploring the Intersection of Design, AI, and Design Engineering',
-    description: 'How AI is changing the way we design',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
+    title: 'How I Started Frontend with Next.js',
+    description:
+      'My journey from static sites to fullstack apps with the power of Next.js',
+    link: '/blog/my-frontend-journey-nextjs',
     uid: 'blog-1',
   },
   {
-    title: 'Why I left my job to start my own company',
+    title: 'Leveling Up with Vercel, shadcn/ui & v0.dev',
     description:
-      'A deep dive into my decision to leave my job and start my own company',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
+      'How I started shipping polished UIs faster using modern frontend tools',
+    link: '/blog/leveling-up-with-vercel-shadcn-ui-v0',
     uid: 'blog-2',
   },
   {
-    title: 'What I learned from my first year of freelancing',
-    description:
-      'A look back at my first year of freelancing and what I learned',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
+    title: 'Bringing It All Together in Web3',
+    description: 'How I applied my frontend stack to build decentralized apps',
+    link: '/blog/bringing-it-all-together-in-web3',
     uid: 'blog-3',
   },
 ]

@@ -1,0 +1,111 @@
+---
+title: 'My Frontend Journey with Next.js'
+description: 'From old versions to App Router — how I fell in love with the modern frontend stack'
+date: '2025-06-02'
+---
+
+---
+
+<Cover
+  src="https://cdn.cosmos.so/affd4b79-e848-4dfd-bd42-5f2c4a847365?format=jpeg"
+  alt="Image from the movie Alien - from cosmos.com"
+  caption="cosmos.com"
+/>
+
+# My Frontend Journey with Next.js
+
+Before I understood frameworks, I was writing plain HTML and CSS, sometimes copying React code without really understanding it. But everything changed when I met **Next.js**. Not the modern one with fancy `app/` routing — the old-school Next.js with `pages/` and limited built-in features.
+
+---
+
+## First Encounter: Classic Next.js (Pre v13)
+
+I started with an older version of Next.js. At that time:
+
+- No `app/` directory
+- File-based routing only via `pages/`
+- No nested layouts
+- API routes were cool, but limited
+
+It still felt easier than setting up a full React project with webpack. The SSR feature and automatic routing system were super helpful. Even though I didn’t fully understand React concepts like `useEffect` or `useState`, I kept trying — breaking things and rebuilding.
+
+> Next.js felt like the training wheels that I actually enjoyed keeping on.
+
+I used it to build portfolios, landing pages, and clone projects. Sometimes I got stuck, but that made the wins more satisfying.
+
+## Discovering App Router in v13
+
+Then one day, I heard about **Next.js 13**. Everything changed.
+
+- A new folder called `app/`
+- File-based **layouts** and **nested routes**
+- React Server Components (!)
+- Loading UI with `loading.tsx`
+- Parallel routes and intercepting routes
+
+It was a lot. At first, it confused me. But I kept learning. Reading the new docs, watching tutorials, testing layouts. Slowly, the puzzle made sense.
+
+```tsx
+// Old Pages Router;
+;/pages/deinx.tsx /
+  pages /
+  about.tsx /
+  // New App Router
+  app /
+  page.tsx /
+  app /
+  about /
+  page.tsx /
+  app /
+  layout.tsx
+```
+
+That difference was huge. App Router made it feel like I had more control over how the page works — especially with layouts and loading states.
+
+## Becoming Obsessed with Next.js
+
+Once I understood the App Router, I got really into it:
+
+- I followed every Vercel release note
+- I started reading changelogs for every version
+- I joined the Next.js Discord and GitHub discussions
+
+Next.js became more than a tool — it became something I was proud to understand.
+
+## Using It in Real Projects
+
+Now I use it for everything:
+
+- **Portfolio Sites**: Fast loading, SEO-friendly
+- **Blog Platforms**: MDX integration, dynamic routing
+- **Web3 Dashboards**: Server functions + React state
+
+My stack has also evolved:
+
+- **Deployment**: Vercel for frictionless shipping
+- **Styling**: Tailwind + shadcn/ui for clean UI
+- **Prototyping**: v0.dev for fast iteration
+
+---
+
+## What I Learned from This Journey
+
+Frontend isn’t just about pretty buttons. It’s about architecture, performance, UX, and developer experience. Next.js helped me understand how to:
+
+- Structure real apps
+- Think in components
+- Handle async and SSR cleanly
+- Love debugging (sometimes 😅)
+
+## Advice to New Devs
+
+If you're just starting:
+
+- Start with the basics — don’t skip `pages/` router history
+- Learn why App Router exists and how it works
+- Build real apps: not just tutorials
+- Be curious — the docs, changelogs, and GitHub issues are gold
+
+---
+
+Frontend keeps evolving. But for me, it all started with that first `pages/index.tsx` and a confusing Next.js starter template. And that moment — when it all finally clicked — that’s when I knew: **I want to keep building.**

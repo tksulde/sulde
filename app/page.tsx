@@ -137,8 +137,9 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Hi, I’m <span className="text-zinc-50">Sulde</span>, a front-end
-            engineer passionate about building clean, responsive, and
+            Hi, I’m{' '}
+            <span className="text-zinc-950 dark:text-zinc-50">Sulde</span>, a
+            front-end engineer passionate about building clean, responsive, and
             user-friendly experiences, seeing life as a creative journey where
             every project is a step on my personal path of growth and
             exploration.
