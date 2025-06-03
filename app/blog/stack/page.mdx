@@ -1,0 +1,154 @@
+export const metadata = {
+  title: 'My Development Stack',
+  description:
+    'The tools and technologies I use to build modern web applications - from React to databases to AI assistance.',
+  alternates: {
+    canonical: '/blog/my-stack',
+  },
+}
+
+# My Development Stack
+
+<Cover
+  src="https://cdn.cosmos.so/affd4b79-e848-4dfd-bd42-5f2c4a847365?format=jpeg"
+  alt="Image from the movie Alien - from cosmos.com"
+  caption="cosmos.com"
+/>
+
+After years of experimenting with different technologies, I've settled on a stack that keeps me productive and lets me ship quality applications quickly. Here's what I'm using these days and why each tool earned its place in my workflow.
+
+---
+
+## Framework: Next.js + React + TypeScript
+
+I've been building with React since 2016 and Next.js since 2019, so this is where I feel most at home. Every new project starts with TypeScript because catching errors at compile time beats debugging in production.
+
+My approach to data fetching has evolved with React's newer patterns:
+
+<details className="mb-4 -mt-2">
+  <summary className="text-gray-600 dark:text-gray-400 text-[15px] mb-3 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200">Most of the time: Server Components</summary>
+
+I fetch data directly in Server Components whenever possible. It's simpler, faster, and eliminates the loading states that used to complicate client-side fetching.
+
+```jsx
+export default async function BlogPage() {
+  const response = await fetch('https://api.example.com/posts')
+  const posts = await response.json()
+
+  return (
+    <div className="space-y-6">
+      {posts.map((post) => (
+        <article key={post.id} className="rounded-lg border p-4">
+          <h2 className="text-xl font-semibold">{post.title}</h2>
+          <p className="text-gray-600">{post.excerpt}</p>
+        </article>
+      ))}
+    </div>
+  )
+}
+```
+
+For existing codebases or when I need client-side fetching, I still reach for SWR occasionally.
+
+</details>
+
+<details className="mb-4 -mt-2">
+  <summary className="text-gray-600 dark:text-gray-400 text-[15px] mb-3 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200">Sometimes: React's `use` hook with Context</summary>
+
+For complex apps where I need to share data across many components, I've started using React's `use` hook with Context providers:
+
+```jsx
+import { createContext, useContext } from 'react'
+
+const DataContext = createContext(null)
+
+export function DataProvider({ children }) {
+  const dataPromise = fetch('/api/data').then((res) => res.json())
+
+  return (
+    <DataContext.Provider value={{ dataPromise }}>
+      {children}
+    </DataContext.Provider>
+  )
+}
+
+export function useData() {
+  const context = useContext(DataContext)
+  if (!context) {
+    throw new Error('useData must be used within DataProvider')
+  }
+  return context
+}
+```
+
+Then in any client component:
+
+```jsx
+'use client'
+import { use } from 'react'
+import { useData } from './context'
+
+export function DataDisplay() {
+  const { dataPromise } = useData()
+  const data = use(dataPromise)
+
+  return <div>{/* render data */}</div>
+}
+```
+
+This pattern works great when you have global data that needs to be accessed deep in your component tree.
+
+</details>
+
+For forms, I use React 19's Server Actions with `useActionState`, plus Zod for validation. It's a game-changer for handling form submissions without the traditional API route complexity.
+
+## Styling: Tailwind CSS + shadcn/ui
+
+Building accessible, beautiful components from scratch is time-consuming. That's why I use [shadcn/ui](https://ui.shadcn.com/)—it gives me professionally designed components built on accessible primitives.
+
+The components are styled with Tailwind CSS, which has become my favorite way to write styles. Why? Because it's incredibly AI-friendly and keeps styles close to markup.
+
+<details className="mb-4 -mt-2">
+  <summary className="text-gray-600 dark:text-gray-400 text-[15px] mb-3 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200">Why I love Tailwind</summary>
+
+Tailwind's compiler only includes the classes you actually use, so your CSS bundle stays small no matter how many utility classes exist. You get predictable performance with a fixed upper bound on CSS size.
+
+The real magic happens when working with AI coding assistants. Since styles are colocated with markup, AI tools can easily understand and modify both structure and styling in one go.
+
+You're not locked into only Tailwind either—it plays nicely with CSS Modules, styled-components, or any other styling approach when you need them.
+
+</details>
+
+## Database: PostgreSQL + Drizzle ORM
+
+PostgreSQL is my database of choice for its reliability and feature set. Drizzle ORM makes working with Postgres enjoyable with full TypeScript support and excellent developer experience.
+
+I love that I can visualize and edit data with Drizzle Studio, run type-safe queries, and handle migrations seamlessly with Drizzle Kit. The TypeScript integration is so good that database errors often get caught at compile time.
+
+## AI Assistant: v0 and Claude
+
+[v0](https://v0.dev) has become invaluable for code generation, especially when prototyping UI components or handling tedious refactoring tasks. Since it understands modern Next.js, React, and the tools I use, the code suggestions are usually spot-on.
+
+I also use Claude for debugging complex issues, explaining unfamiliar codebases, and brainstorming architectural decisions. AI tools aren't perfect, but they've dramatically improved my productivity when used thoughtfully.
+
+## Development Philosophy
+
+Over the years, I've developed some principles that guide how I write code:
+
+**Simplicity over cleverness**: I prefer `let` over `const` in most cases because it's more flexible and the difference rarely matters in practice.
+
+**Consolidation over fragmentation**: I'd rather have one larger, cohesive file than many tiny components scattered across directories. Related code should live close together.
+
+**Pragmatism over purity**: Copy-pasting code is often better than creating the wrong abstraction. I optimize for readability and maintainability over theoretical elegance.
+
+**Performance awareness**: I avoid putting SVGs directly in JSX for large applications, preferring SVG sprites for better performance and cacheability.
+
+## The Result
+
+This stack lets me move fast without sacrificing quality. The tools work well together, have great TypeScript support, and don't get in my way when I need to ship features quickly.
+
+Most importantly, everything is learnable and well-documented. When I need to onboard someone new or revisit old code, these tools make it straightforward.
+
+---
+
+_Curious about any of these tools? Feel free to [reach out](mailto:sulde.dev@gmail.com) if you have questions about implementing any part of this stack._

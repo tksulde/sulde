@@ -85,23 +85,22 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'How I Started Frontend with Next.js',
+    title: 'My Stack',
     description:
       'My journey from static sites to fullstack apps with the power of Next.js',
-    link: '/blog/my-frontend-journey-nextjs',
+    link: '/blog/stack',
     uid: 'blog-1',
   },
   {
-    title: 'Leveling Up with Vercel, shadcn/ui & v0.dev',
-    description:
-      'How I started shipping polished UIs faster using modern frontend tools',
-    link: '/blog/leveling-up-with-vercel-shadcn-ui-v0',
+    title: 'Understanding AI',
+    description: 'A brief overview on neural networks and language models.',
+    link: '/blog/ai',
     uid: 'blog-2',
   },
   {
-    title: 'Bringing It All Together in Web3',
+    title: 'Web3',
     description: 'How I applied my frontend stack to build decentralized apps',
-    link: '/blog/bringing-it-all-together-in-web3',
+    link: '/blog/web3',
     uid: 'blog-3',
   },
 ]

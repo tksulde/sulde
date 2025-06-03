@@ -1,0 +1,128 @@
+export const metadata = {
+  title: 'My Web3 Frontend Stack',
+  description:
+    'How I build modern Web3 applications with Next.js, wagmi, RainbowKit, and shadcn/ui for delightful user experiences.',
+  alternates: {
+    canonical: '/blog/web3-frontend-stack',
+  },
+}
+
+# My Web3 Frontend Stack
+
+<Cover
+  src="https://images.unsplash.com/photo-1665597704311-d7304eaf70ac?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  alt="Blockchain technology meets modern frontend development"
+  caption="Building Web3 apps that users actually want to use"
+/>
+
+After years of building traditional web apps, diving into Web3 felt like learning to code all over again. But once I found the right tools and established a solid frontend stack, I finally started building dApps that weren't just functional—they were genuinely delightful to use.
+
+Here's the stack that changed everything for me.
+
+---
+
+## The Foundation: Next.js + React
+
+Next.js remains my go-to framework for any full-stack application, Web3 included. The combination of React Server Components, app router, and built-in optimizations handles the heavy lifting for fast UIs and server-side rendering.
+
+For Web3-specific functionality, I layer in ethers.js and wagmi to handle blockchain interactions seamlessly.
+
+<details className="mb-4 -mt-2">
+<summary className="text-gray-600 dark:text-gray-400 text-[15px] mb-3 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200">Example: Wallet Connection + Balance Display</summary>
+
+```tsx
+'use client'
+
+import { useAccount, useBalance } from 'wagmi'
+
+export function WalletBalance() {
+  const { address, isConnected } = useAccount()
+  const { data: balance } = useBalance({ address })
+
+  if (!isConnected) {
+    return <p className="text-gray-500">Please connect your wallet</p>
+  }
+
+  return (
+    <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
+      <p className="text-sm text-gray-600 dark:text-gray-400">Your balance:</p>
+      <p className="text-xl font-semibold">
+        {balance?.formatted} {balance?.symbol}
+      </p>
+    </div>
+  )
+}
+```
+
+</details>
+
+## Beautiful UI: shadcn/ui + Tailwind CSS
+
+Design systems matter, especially in Web3 where trust is everything. I use shadcn/ui built on top of Tailwind CSS for several key reasons:
+
+- **Accessibility first**: All components are built with proper ARIA attributes and keyboard navigation
+- **Highly customizable**: Easy to adapt to any design system or brand
+- **Developer experience**: Copy-paste components that just work
+- **Performance**: Small bundle sizes with Tailwind's JIT compiler
+
+<details className="mb-4 -mt-2">
+  <summary className="text-gray-600 dark:text-gray-400 text-[15px] mb-3 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200">Why Tailwind over CSS-in-JS?</summary>
+
+Tailwind lets me colocate styles with markup, making components self-contained and easier to reason about. It's incredibly fast for prototyping, works beautifully with AI coding assistants, and the JIT compiler ensures I only ship the CSS I actually use. Plus, the consistency it enforces across a team is invaluable.
+
+</details>
+
+## Wallet UX: RainbowKit
+
+The wallet connection experience can make or break a Web3 app. RainbowKit solves this with:
+
+- **Beautiful animations**: Smooth, polished modals that feel native
+- **Chain support**: Built-in support for major networks with automatic switching
+- **User onboarding**: Guides new users through wallet setup
+- **Theming**: Matches your app's design seamlessly
+
+```tsx
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+
+export function AppHeader() {
+  return (
+    <header className="flex items-center justify-between border-b p-6">
+      <div className="flex items-center space-x-2">
+        <h1 className="text-xl font-bold">My dApp</h1>
+      </div>
+      <ConnectButton />
+    </header>
+  )
+}
+```
+
+## Deployment: Vercel
+
+Every project gets deployed on Vercel because it just works:
+
+- **Git-based deployments**: Push to main, instant deployment
+- **Preview environments**: Every PR gets its own URL
+- **Instant rollbacks**: One-click rollback to any previous deployment
+- **Environment management**: Easy secrets and variable management
+- **Edge functions**: Perfect for API routes that need to be fast globally
+
+The developer experience is unmatched—I can focus on building instead of configuring deployment pipelines.
+
+## My First Real Web3 App: Crazy Goat
+
+To test this stack, I built "Crazy Goat"—a Web3 game that's basically Flappy Bird meets competitive tournaments where players earn real crypto rewards.
+The concept is simple: skill-based gaming with actual payouts. Players compete in tournaments, earn money based on high scores, and tournament hosts use special NFTs to create custom competitions with their own rules and prize pools.
+I built it on Arbitrum for fast, cheap transactions and used smart contracts to handle prize distribution automatically. No complicated tokenomics—just fun gameplay with real rewards.
+What I loved most was seeing people actually enjoy playing while earning. The game proves Web3 can enhance gaming without making it feel like a blockchain course.
+Key Lessons Learned
+Web3 might be decentralized, but the frontend should feel familiar. Users don't care about the underlying blockchain complexity—they want:
+
+Intuitive interfaces that work like the apps they already know
+Fast feedback on transactions and state changes
+Clear error handling when things go wrong
+Progressive enhancement that works even if Web3 features fail
+
+This is why I believe frontend development is crucial for Web3 adoption. We're not just building interfaces—we're building bridges between complex decentralized systems and everyday users.
+The stack I've outlined here gives me the confidence to build those bridges effectively, one component at a time.
+
+Want to see this stack in action? Check out the example repository or get in touch if you have questions about implementing any of these tools.
