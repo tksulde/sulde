@@ -2,7 +2,6 @@
 
 import { useRef } from 'react'
 import { useScroll, useTransform } from 'motion/react'
-
 import { cn } from '@/lib/utils'
 import useScreenSize from '@/hooks/use-screen-size'
 import CSSBox, { CSSBoxRef } from './ui/css-box'

@@ -1,4 +1,5 @@
 'use client'
+import Preview from '@/components/heo-section'
 import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
 
@@ -7,7 +8,7 @@ export function Header() {
     <header className="mb-8 flex items-center justify-between">
       <div>
         <Link href="/" className="font-medium text-black dark:text-white">
-          Munkhsuld Bayaraa
+          Sulde
         </Link>
         <TextEffect
           as="p"

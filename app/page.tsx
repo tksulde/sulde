@@ -19,6 +19,7 @@ import {
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
+import Preview from '@/components/heo-section'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -131,22 +132,25 @@ export default function Personal() {
       initial="hidden"
       animate="visible"
     >
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Hi, I’m{' '}
-            <span className="text-zinc-950 dark:text-zinc-50">Sulde</span>, a
-            front-end engineer passionate about building clean, responsive, and
-            user-friendly experiences, seeing life as a creative journey where
-            every project is a step on my personal path of growth and
-            exploration.
-          </p>
-        </div>
-      </motion.section>
-
+      {' '}
+      <div className="flex flex-1 items-center gap-10">
+        <Preview />
+        <motion.section
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <div className="flex-1 items-center justify-center text-lg">
+            <p className="text-zinc-600 dark:text-zinc-400">
+              Hi, I’m{' '}
+              <span className="text-zinc-950 dark:text-zinc-50">Sulde</span>, a
+              front-end engineer passionate about building clean, responsive,
+              and user-friendly experiences, seeing life as a creative journey
+              where every project is a step on my personal path of growth and
+              exploration.
+            </p>
+          </div>
+        </motion.section>
+      </div>
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -175,7 +179,6 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
-
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -213,7 +216,6 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
-
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -249,7 +251,6 @@ export default function Personal() {
           </AnimatedBackground>
         </div>
       </motion.section>
-
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
