@@ -13,9 +13,9 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Sulde Portfolio',
+  title: 'Suldé Portfolio',
   description:
-    'Sulde Portfolio is a personal website built with Next.js, TypeScript, Tailwind CSS, and more.',
+    'Suldé Portfolio is a personal website built with Next.js, TypeScript, Tailwind CSS, and more.',
 }
 
 const geist = Geist({
