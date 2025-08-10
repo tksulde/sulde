@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Erchim Labs',
-    title: 'Founder',
+    title: 'Co Founder',
     start: '2025',
     end: 'Present',
     link: 'https://erchim.com',
@@ -72,10 +72,9 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://helixlabs.org',
     id: 'work2',
   },
-
   {
     company: 'Infinite Solutions',
-    title: 'Front-end Developer',
+    title: 'Software Engineer',
     start: '2023',
     end: '2024',
     link: 'https://infinite.mn/',
