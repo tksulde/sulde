@@ -1,12 +1,12 @@
 {
   "build": {
     "env": {
-      "BUN_VERSION": "latest"
+      "BUN_VERSION": "1.0.25"
     }
   },
   "functions": {
     "api/**.js": {
-      "runtime": "bun@latest"
+      "runtime": "bun@1.0.25"
     }
   },
   "installCommand": "bun install",
