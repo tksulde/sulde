@@ -5,6 +5,7 @@ import { Header } from './header'
 import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -52,6 +53,7 @@ export default function RootLayout({
             </div>
           </div>
           <SpeedInsights />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
