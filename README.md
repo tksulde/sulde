@@ -1,4 +1,4 @@
-<img src="/public/cover.jpg" alt="Cover image for Sulde's personal portfolio" width="100%" />
+<img src="/public/cover.webp" alt="Cover image for Sulde's personal portfolio" width="100%" />
 
 # Sulde’s Portfolio
 

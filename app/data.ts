@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     description: 'Powering DeFi with Multi-Chain Restaking.',
     link: 'https://helixlabs.org/',
     video:
-      'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1YgsvrTSICUpJd1uYby7OFaM3nfETVQ5HINz9A',
+      'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1YgsvrTSICUpJd1uYby7OFaM3nfETVQ5HINz9A', // uploadthing
     id: 'project1',
   },
   {
@@ -44,6 +44,24 @@ export const PROJECTS: Project[] = [
     video:
       'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1Yqe0EfVnni9XMJVdmvPUc6tHNZAeRsYOrGoCK',
     id: 'project2',
+  },
+  {
+    name: 'Hii Box Openning',
+    description:
+      'All-in-one on-chain platform designed to simplify the work of creators and serve as a complete tool hub for the Web3 community.',
+    link: 'https://box.hii.link/',
+    video:
+      'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1YySwcovEHfPj3kUaxi9wWSlu2JB1zcbMDstO5',
+    id: 'project3',
+  },
+  {
+    name: 'Agon Hub',
+    description:
+      'The Web3 Hub That Turns Any Idea Into a Rewarding Competition.',
+    link: 'https://agonhub.xyz/',
+    video:
+      'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1YgORFZ8RICUpJd1uYby7OFaM3nfETVQ5HINz9',
+    id: 'project4',
   },
 ]
 
