@@ -53,7 +53,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Co Founder',
     start: '2025',
     end: 'Present',
-    link: 'https://erchim.com',
+    link: 'https://erchimlabs.com',
     id: 'work0',
   },
   {
@@ -115,11 +115,11 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/ibelick',
+    link: 'https://www.linkedin.com/in/tksulde',
   },
   {
-    label: 'Instagram',
-    link: 'https://www.instagram.com/aug1sth',
+    label: 'Dev.to',
+    link: 'https://www.dev.to/tksulde',
   },
 ]
 

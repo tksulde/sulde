@@ -1,1 +1,1 @@
-export const WEBSITE_URL = 'https://sulde-nine.vercel.app'
+export const WEBSITE_URL = 'https://sulde.space'
