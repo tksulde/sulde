@@ -40,7 +40,7 @@ export const PROJECTS: Project[] = [
     name: 'EigenFi - Movement Vault',
     description:
       'Movement Vault is a next-generation liquid staking solution designed for the Movement Network.',
-    link: 'https://movement.eigenfi.io/',
+    link: 'https://testnet.helixlabs.org/',
     video:
       'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1Yqe0EfVnni9XMJVdmvPUc6tHNZAeRsYOrGoCK',
     id: 'project2',
@@ -58,7 +58,7 @@ export const PROJECTS: Project[] = [
     name: 'Agon Hub',
     description:
       'The Web3 Hub That Turns Any Idea Into a Rewarding Competition.',
-    link: 'https://agonhub.xyz/',
+    link: 'https://extraordinary-spots-442203.framer.app/',
     video:
       'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1YgORFZ8RICUpJd1uYby7OFaM3nfETVQ5HINz9',
     id: 'project4',
@@ -138,6 +138,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Dev.to',
     link: 'https://www.dev.to/tksulde',
+  },
+  {
+    label: 'Notion',
+    link: 'https://gratis-tumbleweed-263.notion.site/Munkhsuld-Bayaraa-1ae8b5ff55a14c37b48ac97404d06d94?source=copy_link',
   },
 ]
 
