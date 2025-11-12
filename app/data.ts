@@ -141,7 +141,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'Notion',
-    link: 'https://gratis-tumbleweed-263.notion.site/Munkhsuld-Bayaraa-1ae8b5ff55a14c37b48ac97404d06d94?source=copy_link',
+    link: 'https://munkhsuld.notion.site/Munkhsuld-Bayaraa-1ae8b5ff55a14c37b48ac97404d06d94',
   },
 ]
 
