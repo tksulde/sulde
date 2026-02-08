@@ -6,6 +6,7 @@ import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/next'
+import { GeistPixelSquare } from 'geist/font/pixel'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -37,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${GeistPixelSquare.className} bg-white tracking-tight antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}
@@ -45,8 +46,8 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
-            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
+          <div className="flex min-h-screen w-full flex-col font-(--font-inter-tight)">
+            <div className="relative mx-auto w-full max-w-3xl flex-1 px-4 pt-20">
               <Header />
               {children}
               <Footer />
