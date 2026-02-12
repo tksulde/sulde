@@ -18,7 +18,7 @@ export default function Preview() {
     <div className="bg-background flex flex-col items-start justify-center">
       <MediaBetweenText
         firstText="Munkhsuld"
-        secondText="Bayara"
+        secondText="Bayaraa"
         mediaUrl={
           'https://cdn.cosmos.so/47c0223f-c704-4d5a-8b47-c48262ebe301?format=jpeg'
         }

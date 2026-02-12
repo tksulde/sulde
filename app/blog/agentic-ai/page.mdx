@@ -1,0 +1,169 @@
+import { ReActLoop } from './react-loop.tsx'
+
+export const metadata = {
+  title: 'Agentic AI and Models',
+  description:
+    'Understanding autonomous AI agents, the ReAct framework, and multi-agent systems.',
+  alternates: {
+    canonical: '/blog/agentic-ai',
+  },
+}
+
+# Agentic AI and Models
+
+AI is evolving from simple question-answering systems into autonomous agents capable of planning, reasoning, and taking action. This shift represents one of the most significant developments in how we interact with AI systems.
+
+## From Chatbots to Agents
+
+Traditional LLMs operate on a simple pattern: receive input, process it, generate output. This is powerful for content creation and answering questions, but limited when it comes to complex, multi-step tasks.
+
+**Agentic AI** represents a fundamental shift. Instead of being passive responders, agents are proactive systems that can:
+
+- **Plan** complex tasks by breaking them into manageable steps
+- **Reason** through problems using chain-of-thought thinking
+- **Act** by calling tools, APIs, and external services
+- **Remember** past interactions and learned experiences
+- **Adapt** their approach based on feedback and new information
+
+The key insight is that agency emerges from architecture—not just model capability. By combining an LLM core with planning, memory, and tool use, we create systems that can pursue goals autonomously.
+
+## The ReAct Framework
+
+At the heart of modern agent architectures lies the **ReAct** (Reasoning and Acting) framework, introduced by researchers at Princeton and Google in 2023. ReAct interleaves reasoning traces with actions in an iterative loop.
+
+<ReActLoop />
+
+The ReAct loop follows this pattern:
+
+1. **Thought**: The agent reasons about the current state and what to do next
+2. **Action**: The agent takes an action (API call, tool use, search)
+3. **Observation**: The agent receives the result of that action
+4. **Repeat**: Based on the observation, generate a new thought
+5. **Final Answer**: When sufficient information is gathered, produce the answer
+
+This approach grounds the model's reasoning in actual observations from external sources, significantly reducing hallucinations while making the decision-making process transparent and debuggable.
+
+<details className="mb-4 -mt-2">
+  <summary className="text-gray-600 dark:text-gray-400 text-[15px] mb-3 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200">ReAct vs Chain-of-Thought</summary>
+
+Chain-of-thought (CoT) prompting showed that LLMs can perform step-by-step reasoning. However, pure reasoning has a critical limitation: the model can only work with information from its training data.
+
+ReAct bridges this gap by connecting reasoning to external actions. While CoT might reason itself into a hallucinated fact, ReAct grounds each reasoning step in real observations from tools and APIs.
+
+</details>
+
+## Core Components of AI Agents
+
+Modern AI agents represent a sophisticated orchestration of cognitive subsystems. Understanding these components is essential for building production-ready agent solutions.
+
+### Planning
+
+The planning subsystem enables agents to think several steps ahead, decompose complex problems, and create actionable roadmaps. When an agent receives a request like "prepare a quarterly business review presentation," its planning engine recursively breaks this down: research metrics, analyze trends, create visualizations, draft content, and format the presentation.
+
+Advanced agents also implement **dynamic replanning**—when an approach isn't working, they evaluate alternatives and update their strategy rather than blindly retrying the same action.
+
+### Memory
+
+Memory extends far beyond simple conversation history. Modern agents implement multiple memory systems:
+
+- **Short-term (working) memory**: Maintains immediate context during task execution
+- **Long-term memory**: Vector stores and databases for persistent knowledge
+- **Episodic memory**: Specific experiences and interactions with outcomes
+- **Semantic memory**: Factual knowledge and learned concepts
+- **Procedural memory**: Encoded skills and reusable procedures
+
+This memory architecture enables personalization—an agent working with a particular user over time learns their preferences, communication style, and typical workflows.
+
+### Tool Use
+
+Tools transform agents from conversationalists into capable actors. Common tools include:
+
+- Search engines and web scrapers
+- Code interpreters and calculators
+- Database connectors
+- API clients for external services
+- File system access
+
+The sophistication lies not just in using individual tools, but in orchestrating complex sequences of tool interactions. A single task might require coordinating dozens of tool calls across multiple systems, with each step's output informing the next.
+
+## Multi-Agent Systems
+
+While single agents are powerful, production systems increasingly rely on multiple specialized agents working together. This mirrors human organizations—we don't hire one "super-employee" for everything; we hire specialists who collaborate.
+
+Multi-agent architectures offer several advantages:
+
+**Specialization**: Each agent focuses on its domain of expertise, leading to higher quality outputs.
+
+**Parallelization**: Multiple agents can work simultaneously on different aspects of a problem.
+
+**Error isolation**: Failures in one agent don't necessarily cascade to the entire system.
+
+**Scalability**: New capabilities can be added by introducing new agent types.
+
+### Orchestration Patterns
+
+Several patterns have emerged for coordinating multi-agent systems:
+
+- **Sequential**: Agents chained in a linear order, each processing the output of the previous
+- **Hierarchical**: A planner agent delegates to specialized worker agents
+- **Handoff**: Agents transfer control based on current task requirements
+- **Parallel fan-out**: Multiple agents explore different aspects simultaneously, then synthesize results
+
+## Building Agentic Systems
+
+Several frameworks have emerged to simplify agent development:
+
+### LangGraph
+
+Built by the LangChain team, LangGraph provides a graph-based approach to building stateful, multi-agent workflows. It emphasizes:
+
+- Durable execution with persistence through failures
+- Human-in-the-loop inspection and modification
+- Comprehensive memory management
+- Cyclical graphs for agent-like behavior
+
+### CrewAI
+
+CrewAI takes a role-based approach, modeling teams of agents with distinct goals and backstories. It's designed for rapid prototyping and simulates how human crews collaborate.
+
+### AutoGen (Microsoft)
+
+AutoGen enables complex agent-to-agent interactions through message passing. It supports negotiation, debate, and coordination between agents, with strong human-in-the-loop capabilities.
+
+## The Future of Agentic AI
+
+We're witnessing a convergence toward standardized protocols and architectures. The **Model Context Protocol (MCP)**, introduced by Anthropic and now maintained by the Linux Foundation, aims to provide universal agent-tool integration.
+
+Key trends shaping the future:
+
+**Task Duration Expansion**: Research shows AI task capability doubles approximately every 7 months. Tasks that currently take minutes will soon take hours, then days.
+
+**Standardization**: Shared protocols like MCP, Agent Skills specifications, and AGENTS.md files are creating interoperability between frameworks.
+
+**Enterprise Hardening**: Production deployment demands governance, observability, and security frameworks specifically designed for autonomous agents.
+
+## Challenges and Considerations
+
+Building reliable agents isn't without challenges:
+
+**Non-determinism**: Agents may take different paths to solve the same problem, making evaluation difficult.
+
+**Latency vs. Quality**: More reasoning steps generally produce better results but increase response time.
+
+**Cost Management**: Iterative loops with external tool calls can accumulate significant token costs.
+
+**Safety and Control**: Autonomous agents need guardrails to prevent harmful actions or excessive resource consumption.
+
+**Evaluation**: Traditional unit tests don't apply well to agent systems. New evaluation frameworks focus on task completion rates, correctness, and safety metrics.
+
+## Conclusion
+
+Agentic AI represents more than an incremental improvement—it's a paradigm shift in how we architect AI systems. By combining LLM reasoning with planning, memory, and tool use, we create systems that can pursue goals autonomously.
+
+The foundations are now in place: ReAct provides the reasoning-action loop, multi-agent architectures enable collaboration at scale, and emerging protocols promise universal interoperability. The challenge ahead is building the governance, security, and reliability that production deployment demands.
+
+Organizations that succeed will treat agentic AI not as a feature to bolt on, but as a fundamental shift in how work gets done. The infrastructure underneath—planning systems, memory architectures, tool ecosystems—is where the real transformation is happening.
+
+---
+
+_Interested in building agentic systems? The best way to learn is by building. Start with a simple ReAct loop, add memory, then expand to multiple specialized agents. The future of AI is autonomous._

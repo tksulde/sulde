@@ -29,6 +29,14 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Vism Visual Studio',
+    description: 'Creative visual studio',
+    link: 'https://vism.studio/',
+    video:
+      'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1Y8DMRpZmtn3RM9HGKDuj0f1CUl2LxVYs76dh5', // uploadthing
+    id: 'project0',
+  },
+  {
     name: 'Helix Labs',
     description: 'Powering DeFi with Multi-Chain Restaking.',
     link: 'https://helixlabs.org/',
@@ -36,15 +44,15 @@ export const PROJECTS: Project[] = [
       'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1YgsvrTSICUpJd1uYby7OFaM3nfETVQ5HINz9A', // uploadthing
     id: 'project1',
   },
-  {
-    name: 'EigenFi - Movement Vault',
-    description:
-      'Movement Vault is a next-generation liquid staking solution designed for the Movement Network.',
-    link: 'https://testnet.helixlabs.org/',
-    video:
-      'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1Yqe0EfVnni9XMJVdmvPUc6tHNZAeRsYOrGoCK',
-    id: 'project2',
-  },
+  // {
+  //   name: 'EigenFi - Movement Vault',
+  //   description:
+  //     'Movement Vault is a next-generation liquid staking solution designed for the Movement Network.',
+  //   link: 'https://testnet.helixlabs.org/',
+  //   video:
+  //     'https://agdhb3rpwe.ufs.sh/f/KFCQbXGMeH1Yqe0EfVnni9XMJVdmvPUc6tHNZAeRsYOrGoCK',
+  //   id: 'project2',
+  // },
   {
     name: 'Hii Box Openning',
     description:
@@ -67,21 +75,22 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
+    company: 'Intelmind LLC',
+    title: 'AI Developer',
+    start: '2025',
+    end: 'Present',
+    link: 'https://www.intelmind.mn/',
+    id: 'work0',
+  },
+  {
     company: 'Erchim Labs',
     title: 'Co Founder',
     start: '2025',
     end: 'Present',
     link: 'https://erchimlabs.com',
-    id: 'work0',
+    id: 'work0.5',
   },
-  {
-    company: 'GHorde',
-    title: 'Co Founder',
-    start: '2024',
-    end: 'Present',
-    link: 'https://ghorde.com',
-    id: 'work1',
-  },
+
   {
     company: 'Helix labs',
     title: 'Software Engineer',
@@ -101,6 +110,13 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 ]
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    title: 'Agentic AI and Models',
+    description:
+      'Understanding autonomous AI agents, the ReAct framework, and multi-agent systems.',
+    link: '/blog/agentic-ai',
+    uid: 'blog-0',
+  },
   {
     title: 'My Stack',
     description:
