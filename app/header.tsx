@@ -1,5 +1,4 @@
 'use client'
-import Preview from '@/components/heo-section'
 import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
 

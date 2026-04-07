@@ -88,14 +88,13 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: '2025',
     end: 'Present',
     link: 'https://erchimlabs.com',
-    id: 'work0.5',
+    id: 'work1',
   },
-
   {
     company: 'Helix labs',
     title: 'Software Engineer',
     start: '2024',
-    end: 'Present',
+    end: '2025',
     link: 'https://helixlabs.org',
     id: 'work2',
   },
@@ -110,6 +109,13 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 ]
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    title: 'AI in My Workflow',
+    description:
+      'How AI became part of my daily routine — from coding and design to thinking and lifestyle.',
+    link: '/blog/workflow',
+    uid: 'blog-workflow',
+  },
   {
     title: 'Agentic AI and Models',
     description:

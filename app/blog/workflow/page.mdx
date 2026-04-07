@@ -1,0 +1,95 @@
+export const metadata = {
+  title: 'AI in My Workflow',
+  description:
+    'How AI became part of my daily routine — from writing code and designing interfaces to thinking through problems and managing my time.',
+  alternates: {
+    canonical: '/blog/workflow',
+  },
+}
+
+# AI in My Workflow
+
+A year ago, AI was a tool I opened occasionally. Now it's woven into nearly every part of how I work and think. This isn't a guide on how to use AI — it's an honest look at how it's changed my daily rhythm as a developer, and where I've drawn the line.
+
+---
+
+## Morning: Thinking Before Building
+
+My day usually starts with planning. Before I write any code, I need to understand what I'm building and why. This is where AI shifted things for me first.
+
+I used to spend 30-40 minutes reading through issues, docs, and Slack threads to build context. Now I feed that context into Claude and have a conversation about it. Not to get answers — but to think out loud. AI became my rubber duck, except it talks back with useful follow-up questions.
+
+The biggest change isn't speed. It's that I start the day with a clearer mental model of the problem.
+
+## Coding: The Pair That Never Leaves
+
+When I'm in the code, AI shows up in a few ways:
+
+**Scaffolding.** When I need a new component, a new page, a new API route — I describe what I want and get a solid starting point. v0 is great for UI components because it understands Tailwind and shadcn/ui out of the box. Claude Code handles the heavier stuff: refactoring, debugging, connecting pieces across files.
+
+**Debugging.** This is where AI saves me the most time. Instead of staring at a stack trace for 20 minutes, I paste it in and get pointed to the likely cause in seconds. It's not always right, but it narrows the search space dramatically.
+
+**Code review.** Before I push, I ask AI to review my changes. It catches things I miss — edge cases, missing error handling, accessibility issues, naming inconsistencies. It's like having a senior engineer who's always available and never annoyed by your questions.
+
+<details className="mb-4 -mt-2">
+  <summary className="text-gray-600 dark:text-gray-400 text-[15px] mb-3 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200">What I don't use AI for in code</summary>
+
+I don't let AI write entire features without understanding them. If I can't explain what a piece of code does, I rewrite it until I can. AI-generated code that you don't understand is tech debt with a timer on it.
+
+I also don't blindly accept suggestions. AI is confidently wrong often enough that reading every line matters. The time you save generating code, you spend reviewing it — and that's the right tradeoff.
+
+</details>
+
+## Design and Decisions
+
+I'm a frontend engineer, but design decisions are part of the job. When I'm choosing between layout approaches, animation strategies, or component architectures, I talk through the tradeoffs with AI.
+
+This sounds small, but it's changed how I make decisions. Instead of going with gut feeling and hoping for the best, I explore options faster. "What are the accessibility implications of this approach?" or "How does this animation pattern perform on mobile?" — questions I'd normally skip because looking them up takes too long.
+
+The result: I make more informed decisions in less time. Not because AI knows better, but because it removes the friction of research.
+
+## Writing and Communication
+
+Half of engineering is communication — pull request descriptions, technical docs, messages to teammates. AI helps me write more clearly and concisely.
+
+I don't use it to generate messages from scratch. Instead, I draft something, then ask AI to tighten it up. Remove the filler, clarify the ambiguous parts, make the intent obvious. Writing is thinking, and the drafting process is where my own understanding solidifies. AI just polishes the output.
+
+For blog posts like this one, AI helps with structure. I know what I want to say — I sometimes struggle with the order. "Here are my thoughts on X, help me organize them" is one of my most common prompts.
+
+## Learning: Accelerated, Not Replaced
+
+When I'm exploring a new technology or concept, AI is the best tutor I've ever had. It explains things at whatever level I need, answers follow-up questions instantly, and never judges me for not knowing something.
+
+But I've learned to be careful here. There's a difference between _understanding_ something and _having it explained to you_. Real learning requires struggle — the frustration of a bug you can't figure out, the satisfaction of finally grasping a concept on your own.
+
+I use AI to shorten the struggle, not eliminate it. If I'm stuck for 5 minutes, I keep going. If I'm stuck for 30, I ask for a hint — not the answer. The balance matters.
+
+## Lifestyle: Beyond the Screen
+
+AI has leaked into my non-coding life too, and I'm still figuring out the boundaries.
+
+**Planning.** I use it to organize travel, structure my week, and break down personal projects into manageable steps. It's good at taking a vague goal and turning it into concrete next actions.
+
+**Reading.** When I come across a dense paper or a long article, I sometimes ask AI for a summary first, then decide if it's worth reading in full. This has made me more selective about what I give my attention to.
+
+**Reflecting.** This might sound strange, but I sometimes journal by talking to AI. Not for therapy — but for processing. When I describe a challenge or a decision I'm wrestling with, the act of articulating it clearly often gives me the answer before AI even responds.
+
+## The Line I Draw
+
+AI is a tool, and like any tool, it works best within constraints. Here's where I intentionally don't use it:
+
+- **Creative direction.** AI can generate options, but the taste, the vision, the "this feels right" — that's mine. I never want to outsource that.
+- **Relationships.** I don't use AI to write personal messages. If someone matters enough to reach out to, they deserve my actual words, clumsy as they might be.
+- **Final judgment.** AI recommends, I decide. Every commit, every design choice, every technical decision is mine to own. If it breaks, I can't blame the model.
+
+## What's Changed, Really
+
+Looking back, AI hasn't made me a different kind of developer. It's made me a faster version of myself. The way I think about problems hasn't changed — I just spend less time on the parts that used to slow me down.
+
+The biggest shift is invisible: I'm less afraid to try things. When prototyping is cheap and debugging is faster, you experiment more. You explore more options. You take creative risks you wouldn't have taken when every idea cost an hour of implementation.
+
+That's the real impact. Not the speed — the willingness to explore.
+
+---
+
+_This is how I work today. It'll probably look different in six months. That's the point — the workflow keeps evolving, and AI is just the latest force reshaping it._

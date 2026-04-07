@@ -80,10 +80,11 @@ export const MediaBetweenText = forwardRef<
     const componentRef = useRef<HTMLDivElement>(null)
     const [isAnimating, setIsAnimating] = useState(false)
 
-    const isInView =
-      triggerType === 'inView'
-        ? useInView(componentRef || containerRef, useInViewOptionsProp)
-        : false
+    const inViewResult = useInView(
+      componentRef || containerRef,
+      useInViewOptionsProp,
+    )
+    const isInView = triggerType === 'inView' ? inViewResult : false
     const [isHovered, setIsHovered] = useState(false)
 
     useImperativeHandle(ref, () => ({

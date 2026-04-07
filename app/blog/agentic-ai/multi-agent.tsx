@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import * as React from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
 interface Agent {
-  id: string;
-  name: string;
-  role: string;
-  icon: string;
-  color: string;
-  bgColor: string;
-  x: number;
-  y: number;
-  capabilities: string[];
+  id: string
+  name: string
+  role: string
+  icon: string
+  color: string
+  bgColor: string
+  x: number
+  y: number
+  capabilities: string[]
 }
 
 const agents: Agent[] = [
@@ -47,7 +47,11 @@ const agents: Agent[] = [
     bgColor: 'bg-emerald-50',
     x: 50,
     y: 85,
-    capabilities: ['Pattern recognition', 'Trend analysis', 'Statistical modeling'],
+    capabilities: [
+      'Pattern recognition',
+      'Trend analysis',
+      'Statistical modeling',
+    ],
   },
   {
     id: 'writer',
@@ -60,151 +64,185 @@ const agents: Agent[] = [
     y: 55,
     capabilities: ['Draft creation', 'Style adaptation', 'Review & edit'],
   },
-];
+]
 
 interface WorkflowStep {
-  id: number;
-  from: string;
-  to: string;
-  message: string;
-  dataType: 'task' | 'data' | 'result' | 'feedback';
-  description: string;
+  id: number
+  from: string
+  to: string
+  message: string
+  dataType: 'task' | 'data' | 'result' | 'feedback'
+  description: string
 }
 
 const workflow: WorkflowStep[] = [
-  { 
-    id: 1, 
-    from: 'coordinator', 
-    to: 'researcher', 
+  {
+    id: 1,
+    from: 'coordinator',
+    to: 'researcher',
     message: 'Research: AI agent market trends 2024',
     dataType: 'task',
-    description: 'Coordinator delegates research task'
+    description: 'Coordinator delegates research task',
   },
-  { 
-    id: 2, 
-    from: 'researcher', 
-    to: 'coordinator', 
+  {
+    id: 2,
+    from: 'researcher',
+    to: 'coordinator',
     message: 'Found 15 sources, 50+ data points',
     dataType: 'data',
-    description: 'Researcher returns collected data'
+    description: 'Researcher returns collected data',
   },
-  { 
-    id: 3, 
-    from: 'coordinator', 
-    to: 'analyst', 
+  {
+    id: 3,
+    from: 'coordinator',
+    to: 'analyst',
     message: 'Analyze market patterns & growth rates',
     dataType: 'task',
-    description: 'Coordinator sends data for analysis'
+    description: 'Coordinator sends data for analysis',
   },
-  { 
-    id: 4, 
-    from: 'analyst', 
-    to: 'coordinator', 
+  {
+    id: 4,
+    from: 'analyst',
+    to: 'coordinator',
     message: 'Key insights: 3 major trends identified',
     dataType: 'result',
-    description: 'Analyst provides insights'
+    description: 'Analyst provides insights',
   },
-  { 
-    id: 5, 
-    from: 'coordinator', 
-    to: 'writer', 
+  {
+    id: 5,
+    from: 'coordinator',
+    to: 'writer',
     message: 'Draft comprehensive market report',
     dataType: 'task',
-    description: 'Coordinator requests report creation'
+    description: 'Coordinator requests report creation',
   },
-  { 
-    id: 6, 
-    from: 'writer', 
-    to: 'coordinator', 
+  {
+    id: 6,
+    from: 'writer',
+    to: 'coordinator',
     message: 'Report draft complete (2,500 words)',
     dataType: 'result',
-    description: 'Writer delivers final document'
+    description: 'Writer delivers final document',
   },
-  { 
-    id: 7, 
-    from: 'coordinator', 
-    to: 'writer', 
+  {
+    id: 7,
+    from: 'coordinator',
+    to: 'writer',
     message: 'Revise section 3, add citations',
     dataType: 'feedback',
-    description: 'Coordinator provides feedback'
+    description: 'Coordinator provides feedback',
   },
-  { 
-    id: 8, 
-    from: 'writer', 
-    to: 'coordinator', 
+  {
+    id: 8,
+    from: 'writer',
+    to: 'coordinator',
     message: 'Revisions complete, ready for final',
     dataType: 'result',
-    description: 'Writer applies feedback'
+    description: 'Writer applies feedback',
   },
-];
+]
 
 const dataTypeColors = {
-  task: { bg: 'bg-blue-100', border: 'border-blue-300', text: 'text-blue-700', dot: 'bg-blue-500' },
-  data: { bg: 'bg-purple-100', border: 'border-purple-300', text: 'text-purple-700', dot: 'bg-purple-500' },
-  result: { bg: 'bg-green-100', border: 'border-green-300', text: 'text-green-700', dot: 'bg-green-500' },
-  feedback: { bg: 'bg-amber-100', border: 'border-amber-300', text: 'text-amber-700', dot: 'bg-amber-500' },
-};
+  task: {
+    bg: 'bg-blue-100',
+    border: 'border-blue-300',
+    text: 'text-blue-700',
+    dot: 'bg-blue-500',
+  },
+  data: {
+    bg: 'bg-purple-100',
+    border: 'border-purple-300',
+    text: 'text-purple-700',
+    dot: 'bg-purple-500',
+  },
+  result: {
+    bg: 'bg-green-100',
+    border: 'border-green-300',
+    text: 'text-green-700',
+    dot: 'bg-green-500',
+  },
+  feedback: {
+    bg: 'bg-amber-100',
+    border: 'border-amber-300',
+    text: 'text-amber-700',
+    dot: 'bg-amber-500',
+  },
+}
 
 export function MultiAgent() {
-  const [isPlaying, setIsPlaying] = React.useState(true);
-  const [currentStep, setCurrentStep] = React.useState(0);
-  const [speed, setSpeed] = React.useState(1);
-  const [selectedAgent, setSelectedAgent] = React.useState<string | null>(null);
-  const [showLogs, setShowLogs] = React.useState(false);
+  const [isPlaying, setIsPlaying] = React.useState(true)
+  const [currentStep, setCurrentStep] = React.useState(0)
+  const [speed, setSpeed] = React.useState(1)
+  const [selectedAgent, setSelectedAgent] = React.useState<string | null>(null)
+  const [showLogs, setShowLogs] = React.useState(false)
 
   React.useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying) return
 
     const timer = setInterval(() => {
-      setCurrentStep((prev) => (prev + 1) % workflow.length);
-    }, 2500 / speed);
+      setCurrentStep((prev) => (prev + 1) % workflow.length)
+    }, 2500 / speed)
 
-    return () => clearInterval(timer);
-  }, [isPlaying, speed]);
+    return () => clearInterval(timer)
+  }, [isPlaying, speed])
 
-  const currentMsg = workflow[currentStep];
-  const fromAgent = agents.find((a) => a.id === currentMsg.from);
-  const toAgent = agents.find((a) => a.id === currentMsg.to);
-  const msgColors = dataTypeColors[currentMsg.dataType];
+  const currentMsg = workflow[currentStep]
+  const fromAgent = agents.find((a) => a.id === currentMsg.from)
+  const toAgent = agents.find((a) => a.id === currentMsg.to)
+  const msgColors = dataTypeColors[currentMsg.dataType]
 
   // Calculate bezier curve path for message flow
   const getPath = (from: Agent, to: Agent) => {
-    const x1 = from.x;
-    const y1 = from.y;
-    const x2 = to.x;
-    const y2 = to.y;
-    const midX = (x1 + x2) / 2;
-    return `M ${x1} ${y1} Q ${midX} ${y1} ${midX} ${(y1 + y2) / 2} T ${x2} ${y2}`;
-  };
+    const x1 = from.x
+    const y1 = from.y
+    const x2 = to.x
+    const y2 = to.y
+    const midX = (x1 + x2) / 2
+    return `M ${x1} ${y1} Q ${midX} ${y1} ${midX} ${(y1 + y2) / 2} T ${x2} ${y2}`
+  }
 
   return (
-    <div className="w-full max-w-[80ch] mx-auto p-4 sm:p-6 relative bg-white border border-gray-200 rounded-lg shadow-sm">
+    <div className="relative mx-auto w-full max-w-[80ch] rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
       {/* Header */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="mb-6 flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-semibold text-gray-800">Multi-Agent Collaboration</h3>
-          <p className="text-xs text-gray-500">Coordinated workflow across specialized agents</p>
+          <h3 className="text-sm font-semibold text-gray-800">
+            Multi-Agent Collaboration
+          </h3>
+          <p className="text-xs text-gray-500">
+            Coordinated workflow across specialized agents
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowLogs(!showLogs)}
-            className={`text-xs px-3 py-1.5 rounded-full transition-colors ${
-              showLogs ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            className={`rounded-full px-3 py-1.5 text-xs transition-colors ${
+              showLogs
+                ? 'bg-gray-800 text-white'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
             {showLogs ? 'Hide Logs' : 'Show Logs'}
           </button>
           <button
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+            className="rounded-full bg-gray-100 p-2 transition-colors hover:bg-gray-200"
             onClick={() => setIsPlaying(!isPlaying)}
           >
             {isPlaying ? (
-              <svg className="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="h-4 w-4 text-gray-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <rect x="6" y="4" width="4" height="16" />
                 <rect x="14" y="4" width="4" height="16" />
               </svg>
             ) : (
-              <svg className="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="h-4 w-4 text-gray-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             )}
@@ -215,21 +253,23 @@ export function MultiAgent() {
       {/* Network Diagram */}
       <div className="relative h-[360px] w-full">
         {/* Connection Lines (Background) */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+        <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible">
           {/* Static connections between all agents */}
           {agents.map((agent, i) =>
-            agents.slice(i + 1).map((other) => (
-              <line
-                key={`${agent.id}-${other.id}`}
-                x1={`${agent.x}%`}
-                y1={`${agent.y}%`}
-                x2={`${other.x}%`}
-                y2={`${other.y}%`}
-                stroke="#e5e7eb"
-                strokeWidth="1"
-                strokeDasharray="4,4"
-              />
-            ))
+            agents
+              .slice(i + 1)
+              .map((other) => (
+                <line
+                  key={`${agent.id}-${other.id}`}
+                  x1={`${agent.x}%`}
+                  y1={`${agent.y}%`}
+                  x2={`${other.x}%`}
+                  y2={`${other.y}%`}
+                  stroke="#e5e7eb"
+                  strokeWidth="1"
+                  strokeDasharray="4,4"
+                />
+              )),
           )}
 
           {/* Active message flow */}
@@ -240,39 +280,43 @@ export function MultiAgent() {
                 <motion.path
                   d={getPath(fromAgent, toAgent)}
                   fill="none"
-                  stroke={msgColors.dot.replace('bg-', '').replace('500', '200')}
+                  stroke={msgColors.dot
+                    .replace('bg-', '')
+                    .replace('500', '200')}
                   strokeWidth="8"
                   strokeLinecap="round"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: [0, 0.5, 0] }}
-                  transition={{ duration: 1.2 / speed, ease: "easeInOut" }}
+                  transition={{ duration: 1.2 / speed, ease: 'easeInOut' }}
                 />
                 {/* Main line */}
                 <motion.path
                   d={getPath(fromAgent, toAgent)}
                   fill="none"
-                  stroke={msgColors.dot.replace('bg-', '').replace('500', '500')}
+                  stroke={msgColors.dot
+                    .replace('bg-', '')
+                    .replace('500', '500')}
                   strokeWidth="3"
                   strokeLinecap="round"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
-                  transition={{ duration: 0.8 / speed, ease: "easeOut" }}
+                  transition={{ duration: 0.8 / speed, ease: 'easeOut' }}
                 />
                 {/* Moving dot */}
                 <motion.circle
                   r="5"
                   fill={msgColors.dot.replace('bg-', '').replace('500', '500')}
-                  initial={{ 
-                    cx: `${fromAgent.x}%`, 
+                  initial={{
+                    cx: `${fromAgent.x}%`,
                     cy: `${fromAgent.y}%`,
-                    opacity: 1
+                    opacity: 1,
                   }}
-                  animate={{ 
-                    cx: `${toAgent.x}%`, 
+                  animate={{
+                    cx: `${toAgent.x}%`,
                     cy: `${toAgent.y}%`,
-                    opacity: [1, 1, 0]
+                    opacity: [1, 1, 0],
                   }}
-                  transition={{ duration: 0.8 / speed, ease: "easeInOut" }}
+                  transition={{ duration: 0.8 / speed, ease: 'easeInOut' }}
                 />
               </motion.g>
             )}
@@ -281,8 +325,9 @@ export function MultiAgent() {
 
         {/* Agents */}
         {agents.map((agent) => {
-          const isActive = currentMsg.from === agent.id || currentMsg.to === agent.id;
-          const isSelected = selectedAgent === agent.id;
+          const isActive =
+            currentMsg.from === agent.id || currentMsg.to === agent.id
+          const isSelected = selectedAgent === agent.id
 
           return (
             <motion.div
@@ -298,12 +343,14 @@ export function MultiAgent() {
               animate={{
                 scale: isSelected ? 1.1 : isActive ? 1.05 : 1,
               }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               {/* Agent Card */}
               <div
-                className={`relative flex flex-col items-center p-3 rounded-2xl bg-gradient-to-br ${agent.color} shadow-lg transition-all ${
-                  isActive ? 'ring-2 ring-white ring-offset-2 ring-offset-blue-200' : ''
+                className={`relative flex flex-col items-center rounded-2xl bg-gradient-to-br p-3 ${agent.color} shadow-lg transition-all ${
+                  isActive
+                    ? 'ring-2 ring-white ring-offset-2 ring-offset-blue-200'
+                    : ''
                 } ${isSelected ? 'ring-4 ring-gray-200 ring-offset-2' : ''}`}
               >
                 {/* Status indicator */}
@@ -311,30 +358,30 @@ export function MultiAgent() {
                   <span className="relative flex h-3 w-3">
                     {isActive && (
                       <>
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></span>
+                        <span className="relative inline-flex h-3 w-3 rounded-full bg-white"></span>
                       </>
                     )}
                     {!isActive && (
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-white/50"></span>
+                      <span className="relative inline-flex h-3 w-3 rounded-full bg-white/50"></span>
                     )}
                   </span>
                 </div>
 
-                <span className="text-2xl sm:text-3xl mb-1">{agent.icon}</span>
-                <span className="text-[10px] sm:text-xs font-bold text-white whitespace-nowrap">
+                <span className="mb-1 text-2xl sm:text-3xl">{agent.icon}</span>
+                <span className="text-[10px] font-bold whitespace-nowrap text-white sm:text-xs">
                   {agent.name}
                 </span>
               </div>
 
               {/* Label below */}
-              <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <p className="text-[10px] text-gray-500 text-center max-w-[80px] leading-tight">
+              <div className="absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap">
+                <p className="max-w-[80px] text-center text-[10px] leading-tight text-gray-500">
                   {agent.role}
                 </p>
               </div>
             </motion.div>
-          );
+          )
         })}
 
         {/* Active Message Bubble */}
@@ -346,12 +393,16 @@ export function MultiAgent() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+              className="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
             >
-              <div className={`${msgColors.bg} ${msgColors.border} border rounded-xl px-4 py-3 shadow-lg max-w-[220px]`}>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <div className={`w-2 h-2 rounded-full ${msgColors.dot}`} />
-                  <span className={`text-[10px] uppercase tracking-wider font-semibold ${msgColors.text}`}>
+              <div
+                className={`${msgColors.bg} ${msgColors.border} max-w-[220px] rounded-xl border px-4 py-3 shadow-lg`}
+              >
+                <div className="mb-1.5 flex items-center gap-2">
+                  <div className={`h-2 w-2 rounded-full ${msgColors.dot}`} />
+                  <span
+                    className={`text-[10px] font-semibold tracking-wider uppercase ${msgColors.text}`}
+                  >
                     {currentMsg.dataType}
                   </span>
                   <span className="text-gray-300">|</span>
@@ -359,7 +410,7 @@ export function MultiAgent() {
                     {fromAgent.name} → {toAgent.name}
                   </span>
                 </div>
-                <p className="text-sm text-gray-800 font-medium leading-snug">
+                <p className="text-sm leading-snug font-medium text-gray-800">
                   {currentMsg.message}
                 </p>
               </div>
@@ -381,27 +432,39 @@ export function MultiAgent() {
             {agents
               .filter((a) => a.id === selectedAgent)
               .map((agent) => (
-                <div 
-                  key={agent.id} 
-                  className={`p-4 rounded-xl ${agent.bgColor} border border-gray-200`}
+                <div
+                  key={agent.id}
+                  className={`rounded-xl p-4 ${agent.bgColor} border border-gray-200`}
                 >
-                  <div className="flex items-start justify-between mb-3">
+                  <div className="mb-3 flex items-start justify-between">
                     <div className="flex items-center gap-3">
                       <span className="text-3xl">{agent.icon}</span>
                       <div>
-                        <h4 className="font-bold text-gray-800">{agent.name}</h4>
+                        <h4 className="font-bold text-gray-800">
+                          {agent.name}
+                        </h4>
                         <p className="text-xs text-gray-600">{agent.role}</p>
                       </div>
                     </div>
                     <button
                       onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedAgent(null);
+                        e.stopPropagation()
+                        setSelectedAgent(null)
                       }}
                       className="text-gray-400 hover:text-gray-600"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      <svg
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
                       </svg>
                     </button>
                   </div>
@@ -409,7 +472,7 @@ export function MultiAgent() {
                     {agent.capabilities.map((cap, idx) => (
                       <span
                         key={idx}
-                        className="text-xs px-2.5 py-1 rounded-full bg-white/80 text-gray-700 border border-gray-200"
+                        className="rounded-full border border-gray-200 bg-white/80 px-2.5 py-1 text-xs text-gray-700"
                       >
                         {cap}
                       </span>
@@ -426,35 +489,41 @@ export function MultiAgent() {
             exit={{ opacity: 0, height: 0 }}
             className="mt-4 overflow-hidden"
           >
-            <div className="bg-gray-50 rounded-xl border border-gray-200 p-3 max-h-[180px] overflow-y-auto">
+            <div className="max-h-[180px] overflow-y-auto rounded-xl border border-gray-200 bg-gray-50 p-3">
               <div className="space-y-2">
                 {workflow.map((msg, idx) => {
-                  const colors = dataTypeColors[msg.dataType];
-                  const isCurrent = idx === currentStep;
-                  const from = agents.find((a) => a.id === msg.from);
-                  const to = agents.find((a) => a.id === msg.to);
-                  
+                  const colors = dataTypeColors[msg.dataType]
+                  const isCurrent = idx === currentStep
+                  const from = agents.find((a) => a.id === msg.from)
+                  const to = agents.find((a) => a.id === msg.to)
+
                   return (
                     <motion.div
                       key={msg.id}
-                      className={`flex items-center gap-3 p-2 rounded-lg text-xs transition-all ${
-                        isCurrent ? `${colors.bg} border ${colors.border}` : 'bg-white border border-gray-100'
+                      className={`flex items-center gap-3 rounded-lg p-2 text-xs transition-all ${
+                        isCurrent
+                          ? `${colors.bg} border ${colors.border}`
+                          : 'border border-gray-100 bg-white'
                       }`}
-                      animate={{ 
+                      animate={{
                         opacity: isCurrent ? 1 : 0.6,
-                        scale: isCurrent ? 1.02 : 1
+                        scale: isCurrent ? 1.02 : 1,
                       }}
                     >
-                      <div className={`w-1.5 h-1.5 rounded-full ${isCurrent ? colors.dot : 'bg-gray-300'}`} />
-                      <span className="text-gray-400 w-5">#{msg.id}</span>
+                      <div
+                        className={`h-1.5 w-1.5 rounded-full ${isCurrent ? colors.dot : 'bg-gray-300'}`}
+                      />
+                      <span className="w-5 text-gray-400">#{msg.id}</span>
                       <span className="text-gray-500">
                         {from?.icon} → {to?.icon}
                       </span>
-                      <span className={`font-medium ${isCurrent ? 'text-gray-800' : 'text-gray-600'}`}>
+                      <span
+                        className={`font-medium ${isCurrent ? 'text-gray-800' : 'text-gray-600'}`}
+                      >
                         {msg.message}
                       </span>
                     </motion.div>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -469,26 +538,30 @@ export function MultiAgent() {
           >
             {/* Progress bar */}
             <div className="flex items-center gap-3">
-              <span className="text-xs text-gray-400 whitespace-nowrap">Workflow Progress</span>
-              <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                <motion.div 
+              <span className="text-xs whitespace-nowrap text-gray-400">
+                Workflow Progress
+              </span>
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100">
+                <motion.div
                   className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
                   initial={{ width: '0%' }}
-                  animate={{ width: `${((currentStep + 1) / workflow.length) * 100}%` }}
+                  animate={{
+                    width: `${((currentStep + 1) / workflow.length) * 100}%`,
+                  }}
                   transition={{ duration: 0.5 }}
                 />
               </div>
-              <span className="text-xs text-gray-500 font-medium">
+              <span className="text-xs font-medium text-gray-500">
                 {currentStep + 1}/{workflow.length}
               </span>
             </div>
-            
+
             {/* Current step description */}
-            <motion.p 
+            <motion.p
               key={currentStep}
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-xs text-gray-500 mt-2 text-center"
+              className="mt-2 text-center text-xs text-gray-500"
             >
               {currentMsg.description}
             </motion.p>
@@ -497,18 +570,18 @@ export function MultiAgent() {
       </AnimatePresence>
 
       {/* Controls & Legend */}
-      <div className="mt-4 pt-4 border-t border-gray-100">
+      <div className="mt-4 border-t border-gray-100 pt-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           {/* Speed controls */}
           <div className="flex items-center gap-1">
-            <span className="text-xs text-gray-400 mr-2">Speed:</span>
+            <span className="mr-2 text-xs text-gray-400">Speed:</span>
             {[0.5, 1, 1.5, 2].map((s) => (
               <button
                 key={s}
                 onClick={() => setSpeed(s)}
-                className={`px-2.5 py-1 text-xs rounded-md transition-colors ${
-                  speed === s 
-                    ? 'bg-gray-800 text-white' 
+                className={`rounded-md px-2.5 py-1 text-xs transition-colors ${
+                  speed === s
+                    ? 'bg-gray-800 text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -521,7 +594,7 @@ export function MultiAgent() {
           <div className="flex items-center gap-3 text-[10px]">
             {Object.entries(dataTypeColors).map(([type, colors]) => (
               <div key={type} className="flex items-center gap-1.5">
-                <div className={`w-2 h-2 rounded-full ${colors.dot}`} />
+                <div className={`h-2 w-2 rounded-full ${colors.dot}`} />
                 <span className="text-gray-500 capitalize">{type}</span>
               </div>
             ))}
@@ -529,11 +602,12 @@ export function MultiAgent() {
         </div>
 
         {!selectedAgent && !showLogs && (
-          <p className="text-center text-xs text-gray-400 mt-3">
-            Click any agent to view details, or click "Show Logs" to see all messages
+          <p className="mt-3 text-center text-xs text-gray-400">
+            Click any agent to view details, or click "Show Logs" to see all
+            messages
           </p>
         )}
       </div>
     </div>
-  );
+  )
 }

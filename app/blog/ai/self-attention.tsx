@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import * as React from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
 interface Token {
-  text: string;
-  attention: number[];
+  text: string
+  attention: number[]
 }
 
 interface Step {
-  id: number;
-  description: string;
-  tokens: Token[];
+  id: number
+  description: string
+  tokens: Token[]
 }
 
 const steps: Step[] = [
@@ -63,30 +63,30 @@ const steps: Step[] = [
       { text: 'tired', attention: [0, 0, 0] },
     ],
   },
-];
+]
 
 export function SelfAttention() {
-  const [currentStep, setCurrentStep] = React.useState(1);
-  const [isPlaying, setIsPlaying] = React.useState(true);
-  const [speed, setSpeed] = React.useState(1);
+  const [currentStep, setCurrentStep] = React.useState(1)
+  const [isPlaying, setIsPlaying] = React.useState(true)
+  const [speed, setSpeed] = React.useState(1)
 
   React.useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying) return
 
     const timer = setInterval(() => {
       setCurrentStep((prev) => {
         if (prev === steps.length) {
-          return 1;
+          return 1
         }
-        return prev + 1;
-      });
-    }, 4000 / speed);
+        return prev + 1
+      })
+    }, 4000 / speed)
 
-    return () => clearInterval(timer);
-  }, [isPlaying, speed]);
+    return () => clearInterval(timer)
+  }, [isPlaying, speed])
 
   const renderStep = () => {
-    const step = steps[currentStep - 1];
+    const step = steps[currentStep - 1]
 
     return (
       <motion.div
@@ -96,14 +96,14 @@ export function SelfAttention() {
         exit={{ opacity: 0 }}
         className="w-full text-gray-800"
       >
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="mb-8 flex flex-wrap justify-center gap-2">
           {step.tokens.map((token, index) => (
             <div key={index} className="flex flex-col items-center">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.05 }}
-                className={`text-lg md:text-base font-mono mb-2 border-2 rounded p-1 ${
+                className={`mb-2 rounded border-2 p-1 font-mono text-lg md:text-base ${
                   token.attention[currentStep - 1] > 0
                     ? 'border-blue-600'
                     : 'border-gray-300'
@@ -127,7 +127,7 @@ export function SelfAttention() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.05 + 0.15 }}
-                className="text-xs text-gray-600 mt-1"
+                className="mt-1 text-xs text-gray-600"
               >
                 {token.attention[currentStep - 1].toFixed(2)}
               </motion.div>
@@ -135,18 +135,18 @@ export function SelfAttention() {
           ))}
         </div>
       </motion.div>
-    );
-  };
+    )
+  }
 
   return (
-    <div className="w-full max-w-[80ch] mx-auto p-4 sm:p-8 relative bg-white border border-gray-200 rounded-md">
+    <div className="relative mx-auto w-full max-w-[80ch] rounded-md border border-gray-200 bg-white p-4 sm:p-8">
       <div className="flex flex-col items-center space-y-12">
-        <div className="h-[250px] flex items-center justify-center scale-75 sm:scale-100">
+        <div className="flex h-[250px] scale-75 items-center justify-center sm:scale-100">
           <AnimatePresence mode="wait">{renderStep()}</AnimatePresence>
         </div>
       </div>
 
-      <div className="absolute bottom-4 mb-58 sm:mb-0 sm:bottom-4 left-4">
+      <div className="absolute bottom-4 left-4 mb-58 sm:bottom-4 sm:mb-0">
         <motion.div
           key={currentStep}
           initial={{ opacity: 0 }}
@@ -158,9 +158,9 @@ export function SelfAttention() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-4 right-4 flex items-center space-x-1">
+      <div className="absolute right-4 bottom-4 flex items-center space-x-1">
         <button
-          className="p-[2px] rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-800"
+          className="rounded-full bg-gray-200 p-[2px] text-gray-800 hover:bg-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none"
           onClick={() => setIsPlaying(!isPlaying)}
           aria-label={isPlaying ? 'Pause' : 'Play'}
         >
@@ -199,11 +199,11 @@ export function SelfAttention() {
         {[0.5, 1, 1.5, 2].map((s) => (
           <button
             key={`speed-${s}`}
-            className={`px-2 py-1 text-xs rounded ${
+            className={`rounded px-2 py-1 text-xs ${
               speed === s
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-200 text-gray-800'
-            } hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400`}
+            } hover:bg-blue-500 hover:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none`}
             onClick={() => setSpeed(s)}
           >
             {s}x
@@ -211,5 +211,5 @@ export function SelfAttention() {
         ))}
       </div>
     </div>
-  );
+  )
 }

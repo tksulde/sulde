@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import * as React from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
 const networkStructure = {
   inputNodes: ['San', 'Francisco', 'is', 'a'],
@@ -11,130 +11,128 @@ const networkStructure = {
     Array(4).fill('hidden3'),
   ],
   outputNode: 'city',
-};
+}
 
 const nodePositions = {
   xGap: 100,
   yGap: 30,
   radius: 12,
   startX: 60,
-};
+}
 
 export function LLM() {
-  const [activeConnections, setActiveConnections] = React.useState<string[]>(
-    []
-  );
-  const [activeNodes, setActiveNodes] = React.useState<string[]>([]);
-  const [confidence, setConfidence] = React.useState(0);
-  const [isPlaying, setIsPlaying] = React.useState(true);
-  const [currentWordIndex, setCurrentWordIndex] = React.useState(0);
-  const [sentence, setSentence] = React.useState<string[]>([]);
-  const [speed, setSpeed] = React.useState(1);
-  const [predictedWord, setPredictedWord] = React.useState('');
-  const [showOutput, setShowOutput] = React.useState(false);
+  const [activeConnections, setActiveConnections] = React.useState<string[]>([])
+  const [activeNodes, setActiveNodes] = React.useState<string[]>([])
+  const [confidence, setConfidence] = React.useState(0)
+  const [isPlaying, setIsPlaying] = React.useState(true)
+  const [currentWordIndex, setCurrentWordIndex] = React.useState(0)
+  const [sentence, setSentence] = React.useState<string[]>([])
+  const [speed, setSpeed] = React.useState(1)
+  const [predictedWord, setPredictedWord] = React.useState('')
+  const [showOutput, setShowOutput] = React.useState(false)
 
   React.useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying) return
 
-    let step = 0;
-    const totalSteps = 5; // Number of animation phases
+    let step = 0
+    const totalSteps = 5 // Number of animation phases
 
     const timer = setInterval(
       () => {
-        step = (step + 1) % totalSteps;
+        step = (step + 1) % totalSteps
 
         // Reset animation when reaching the end
         if (step === 0) {
-          setActiveConnections([]);
-          setActiveNodes([]);
-          setConfidence(0);
-          setShowOutput(false);
+          setActiveConnections([])
+          setActiveNodes([])
+          setConfidence(0)
+          setShowOutput(false)
 
           // Move to next word
-          const newCurrentWordIndex = currentWordIndex + 1;
+          const newCurrentWordIndex = currentWordIndex + 1
 
           if (newCurrentWordIndex >= networkStructure.inputNodes.length) {
-            setCurrentWordIndex(0);
-            setSentence([]);
+            setCurrentWordIndex(0)
+            setSentence([])
           } else {
-            setCurrentWordIndex(newCurrentWordIndex);
+            setCurrentWordIndex(newCurrentWordIndex)
           }
 
-          return;
+          return
         }
 
         // Animate through the network
-        const newActiveNodes = [];
+        const newActiveNodes = []
         // @ts-ignore
-        const newActiveConnections = [];
+        const newActiveConnections = []
 
         // Add input node
         if (step >= 1) {
           newActiveNodes.push(
-            `input-${networkStructure.inputNodes[currentWordIndex]}`
-          );
+            `input-${networkStructure.inputNodes[currentWordIndex]}`,
+          )
         }
 
         // Add hidden layer 1 nodes and connections
         if (step >= 2) {
           networkStructure.hiddenLayers[0].forEach((_, i) => {
-            newActiveNodes.push(`hidden1-${i}`);
-            newActiveConnections.push(`input-hidden1-${i}`);
-          });
+            newActiveNodes.push(`hidden1-${i}`)
+            newActiveConnections.push(`input-hidden1-${i}`)
+          })
         }
 
         // Add hidden layer 2 nodes and connections
         if (step >= 3) {
           networkStructure.hiddenLayers[1].forEach((_, i) => {
-            newActiveNodes.push(`hidden2-${i}`);
-            newActiveConnections.push(`hidden1-hidden2-${i}`);
-          });
+            newActiveNodes.push(`hidden2-${i}`)
+            newActiveConnections.push(`hidden1-hidden2-${i}`)
+          })
         }
 
         // Add hidden layer 3 nodes and connections
         if (step >= 4) {
           networkStructure.hiddenLayers[2].forEach((_, i) => {
-            newActiveNodes.push(`hidden3-${i}`);
-            newActiveConnections.push(`hidden2-hidden3-${i}`);
-          });
-          newActiveNodes.push('output');
-          newActiveConnections.push('hidden3-output');
-          setConfidence(95 - currentWordIndex * 5);
+            newActiveNodes.push(`hidden3-${i}`)
+            newActiveConnections.push(`hidden2-hidden3-${i}`)
+          })
+          newActiveNodes.push('output')
+          newActiveConnections.push('hidden3-output')
+          setConfidence(95 - currentWordIndex * 5)
           setSentence((prev) => {
             const newSentence = [
               ...prev,
               networkStructure.inputNodes[currentWordIndex],
-            ];
-            return newSentence.length > 4 ? newSentence.slice(-4) : newSentence;
-          });
-          setShowOutput(true);
+            ]
+            return newSentence.length > 4 ? newSentence.slice(-4) : newSentence
+          })
+          setShowOutput(true)
 
           // Set the predictedWord here
           if (currentWordIndex + 1 < networkStructure.inputNodes.length) {
-            setPredictedWord(networkStructure.inputNodes[currentWordIndex + 1]);
+            setPredictedWord(networkStructure.inputNodes[currentWordIndex + 1])
           } else {
-            setPredictedWord(''); // End of sentence
+            setPredictedWord('') // End of sentence
           }
         }
 
-        setActiveNodes(newActiveNodes);
+        setActiveNodes(newActiveNodes)
         setActiveConnections((prevConnections) => {
           // @ts-ignore
-          const newConnections = [...prevConnections, ...newActiveConnections];
-          return Array.from(new Set(newConnections));
-        });
+          const newConnections = [...prevConnections, ...newActiveConnections]
+          return Array.from(new Set(newConnections))
+        })
       },
-      (step === 4 ? 1500 : 1000) / speed
-    );
+      (step === 4 ? 1500 : 1000) / speed,
+    )
 
-    return () => clearInterval(timer);
-  }, [isPlaying, currentWordIndex, speed]);
+    return () => clearInterval(timer)
+  }, [isPlaying, currentWordIndex, speed])
 
   const renderNetwork = () => {
-    const canvasWidth = 650;
-    const canvasHeight = 200;
-    const centerY = canvasHeight / 2;
-    const scale = 0.9;
+    const canvasWidth = 650
+    const canvasHeight = 200
+    const centerY = canvasHeight / 2
+    const scale = 0.9
 
     return (
       <svg
@@ -149,7 +147,7 @@ export function LLM() {
         >
           {/* Render all connections first */}
           {networkStructure.hiddenLayers[0].map((_, hiddenIdx) => {
-            const connectionId = `input-hidden1-${hiddenIdx}`;
+            const connectionId = `input-hidden1-${hiddenIdx}`
             return (
               <motion.line
                 key={`input-h1-${hiddenIdx}`}
@@ -169,7 +167,7 @@ export function LLM() {
                 }}
                 transition={{ duration: 0.5 / speed }}
               />
-            );
+            )
           })}
 
           {/* Connections between hidden layers */}
@@ -177,7 +175,7 @@ export function LLM() {
             return layer.map((_, nodeIdx) => {
               return networkStructure.hiddenLayers[layerIdx + 1].map(
                 (_, nextNodeIdx) => {
-                  const connectionId = `hidden${layerIdx + 1}-hidden${layerIdx + 2}-${nextNodeIdx}`;
+                  const connectionId = `hidden${layerIdx + 1}-hidden${layerIdx + 2}-${nextNodeIdx}`
                   return (
                     <motion.line
                       key={`h${layerIdx + 1}-h${layerIdx + 2}-${nodeIdx}-${nextNodeIdx}`}
@@ -205,15 +203,15 @@ export function LLM() {
                       }}
                       transition={{ duration: 0.5 / speed }}
                     />
-                  );
-                }
-              );
-            });
+                  )
+                },
+              )
+            })
           })}
 
           {/* Connections to output node */}
           {networkStructure.hiddenLayers[2].map((_, hiddenIdx) => {
-            const connectionId = 'hidden3-output';
+            const connectionId = 'hidden3-output'
             return (
               <motion.line
                 key={`h3-output-${hiddenIdx}`}
@@ -233,7 +231,7 @@ export function LLM() {
                 }}
                 transition={{ duration: 0.5 / speed }}
               />
-            );
+            )
           })}
 
           {/* Input Node */}
@@ -251,7 +249,7 @@ export function LLM() {
                 r={nodePositions.radius}
                 fill={
                   activeNodes.includes(
-                    `input-${networkStructure.inputNodes[currentWordIndex]}`
+                    `input-${networkStructure.inputNodes[currentWordIndex]}`,
                   )
                     ? 'rgb(251, 146, 60)'
                     : '#fcd34d'
@@ -275,7 +273,7 @@ export function LLM() {
           {/* Hidden Layer Nodes */}
           {networkStructure.hiddenLayers.map((layer, layerIdx) => {
             return layer.map((_, nodeIdx) => {
-              const nodeId = `hidden${layerIdx + 1}-${nodeIdx}`;
+              const nodeId = `hidden${layerIdx + 1}-${nodeIdx}`
               return (
                 <motion.circle
                   key={nodeId}
@@ -293,8 +291,8 @@ export function LLM() {
                   animate={{ scale: 1 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 />
-              );
-            });
+              )
+            })
           })}
 
           {/* Output Node */}
@@ -329,23 +327,23 @@ export function LLM() {
           </g>
         </g>
       </svg>
-    );
-  };
+    )
+  }
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-4 relative bg-white border border-gray-200 rounded-md">
+    <div className="relative mx-auto w-full max-w-4xl rounded-md border border-gray-200 bg-white p-4">
       <div className="flex flex-col items-center space-y-4">
-        <div className="scale-90 h-[250px] w-full flex items-center justify-center">
+        <div className="flex h-[250px] w-full scale-90 items-center justify-center">
           <AnimatePresence mode="wait">{renderNetwork()}</AnimatePresence>
         </div>
-        <div className="text-sm text-gray-600 self-start">
+        <div className="self-start text-sm text-gray-600">
           Output: {sentence.length > 0 ? sentence.join(' ') : ''}
         </div>
       </div>
 
-      <div className="absolute bottom-4 right-4 flex items-center space-x-1">
+      <div className="absolute right-4 bottom-4 flex items-center space-x-1">
         <button
-          className="p-[2px] rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          className="rounded-full bg-gray-200 p-[2px] hover:bg-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none"
           onClick={() => setIsPlaying(!isPlaying)}
           aria-label={isPlaying ? 'Pause' : 'Play'}
         >
@@ -384,7 +382,7 @@ export function LLM() {
         {[0.5, 1, 1.5, 2].map((s) => (
           <button
             key={s}
-            className={`px-2 py-1 text-xs rounded ${speed === s ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800'} hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400`}
+            className={`rounded px-2 py-1 text-xs ${speed === s ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800'} hover:bg-blue-500 hover:text-white focus:ring-2 focus:ring-blue-400 focus:outline-none`}
             onClick={() => setSpeed(s)}
           >
             {s}x
@@ -392,5 +390,5 @@ export function LLM() {
         ))}
       </div>
     </div>
-  );
+  )
 }

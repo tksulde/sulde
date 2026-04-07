@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { cn } from '@/lib/utils'
-import SimpleMarquee from './ui/marqee'
+import SimpleMarquee from './ui/marquee'
 
 // Interface for album data
 interface Album {

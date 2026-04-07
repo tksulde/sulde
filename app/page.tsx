@@ -19,7 +19,7 @@ import {
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
-import Preview from '@/components/heo-section'
+import Preview from '@/components/hero-section'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -132,7 +132,6 @@ export default function Personal() {
       initial="hidden"
       animate="visible"
     >
-      {' '}
       <div className="flex flex-1 items-center gap-10">
         <Preview />
         <motion.section
@@ -167,6 +166,7 @@ export default function Personal() {
                   className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
                   href={project.link}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {project.name}
                   <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
